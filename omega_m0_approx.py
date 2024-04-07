@@ -7,7 +7,7 @@ from src.lscdm import *
 
 
 z_dag_vals = np.arange(1.50, 11.51, 0.01)
-Om0_vals_lscdm_true = np.array([Om0_finder_lscdm(z_dag_i) for z_dag_i in z_dag_vals])
+Om0_vals_lscdm_true = np.array([Om0_finder_LsCDM(z_dag_i) for z_dag_i in z_dag_vals])
 
 # Fit Function
 def fit_func(x, c0, c1, c2, c3):

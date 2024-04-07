@@ -5,6 +5,7 @@ from scipy.integrate import quad
 # ==================== PARAMETERS ====================
 # Parameters are taken from https://arxiv.org/pdf/1807.06209.pdf
 # Table I. Upper Panel Plik Best Fit Values
+
 c = 299792.458   # speed of light [km/s]
 N_eff = 3.046    # effective neutrino number
 
@@ -17,7 +18,7 @@ Orh2 = Oph2 + Onh2                                  # physical radiation density
 
 theta_true = 0.01041085                             # acoustic scale
 hubble_error = 1e-8                                 # the accepted error while calculating the hubble constant
-h0_prior = [0.4, 1]                                 # h_0 prior range
+h0_prior = [0.4, 1]                                 # h0 prior range
 
 
 # ==================== CALCULATING REDSHIFT TO LSS ====================
@@ -29,7 +30,7 @@ def z_lss_finder(Obh2, Omh2):
     z_lss = 1048*(1+0.00124*Obh2**(-0.738))*(1+g1*Omh2**g2)
     return z_lss
 
-# Redshift parameters for a given Obh2 and Omh2
+# Redshift to LSS, for a given Obh2 and Omh2
 z_lss = z_lss_finder(Obh2, Omh2)
 
 
@@ -54,9 +55,8 @@ def d_A_finder_LCDM(h0):
 
 
 # ==================== FINDING HUBBLE CONSTANT & MATTER DENSITY PARAMETER ====================
-def hubble_finder_lcdm():
+def h0_finder_LCDM():
     """Finding the Hubble constant"""
-
     h0_min, h0_max = h0_prior
     for i in range(100):
         h0_test = (h0_min + h0_max) / 2
@@ -73,8 +73,7 @@ def hubble_finder_lcdm():
     return h0_test
 
 
-def Om0_finder_lcdm():
+def Om0_finder_LCDM():
     """Finding the matter density parameter"""
-
-    h0 = hubble_finder_lcdm()
+    h0 = h0_finder_LCDM()
     return Omh2/h0**2

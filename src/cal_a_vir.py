@@ -3,8 +3,7 @@ import scipy as sp
 
 
 # ==================== PARAMETERS ====================
-# --------------------- Limits
-max_iter = int(1e6)
+max_iter = int(1e6)   # maximum iteration
 
 
 # ==================== SCALE FACTOR AT THE VIRIALIZATION ====================

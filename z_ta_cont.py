@@ -24,15 +24,12 @@ Z = np.transpose(new_points)
 plt.rc('text', usetex=True)
 plt.rc('font', family='serif')
 
-# Adjusting size of the figure
-params = {
-            'legend.fontsize': '22.5',
-            'axes.labelsize': '40',
-            'figure.figsize': (15, 10),
-            'xtick.labelsize': '30',
-            'ytick.labelsize': '30'
-        }
-
+# Adjusting the size of the figure
+params = {'legend.fontsize': '27',
+        'axes.labelsize': '44',
+        'figure.figsize': (15, 10),
+        'xtick.labelsize': '44',
+        'ytick.labelsize': '44'}
 pylab.rcParams.update(params)
 
 fig, ax0 = plt.subplots()
@@ -57,19 +54,19 @@ cbar.set_label(r'$z_{\dagger}$')
 
 # --------------------- Tick settings
 ax0.set_xticks([1.7, 2.0, 2.3, 2.6, 2.9, 3.2, 3.5, 3.8, 4.1, 4.4, 4.7])
-ax0.set_yticks([0.48, 0.53, 0.58, 0.63, 0.68, 0.73, 0.78, 0.83, 0.88, 0.93, 0.98, 1.03, 1.08])
+ax0.set_yticks([0.48, 0.58, 0.68, 0.78, 0.88, 0.98, 1.08])
 
 ax0.xaxis.set_ticks_position('both')
 ax0.yaxis.set_ticks_position('both')
 
-ax0.xaxis.set_tick_params(which='major', width=1.5, size=13.0, color='white', direction='in')
-ax0.xaxis.set_tick_params(which='minor', width=1.0, size=6.50, color='white', direction='in')
-ax0.yaxis.set_tick_params(which='major', width=1.5, size=13.0, color='white', direction='in')
-ax0.yaxis.set_tick_params(which='minor', width=1.0, size=6.50, color='white', direction='in')
+ax0.xaxis.set_tick_params(which='major', width=1.5, size=13.0, direction='in')
+ax0.xaxis.set_tick_params(which='minor', width=1.0, size=6.50, direction='in')
+ax0.yaxis.set_tick_params(which='major', width=1.5, size=13.0, direction='in')
+ax0.yaxis.set_tick_params(which='minor', width=1.0, size=6.50, direction='in')
 ax0.minorticks_on()
 
-plt.text(1.850, 1.018, r'$\rho_{\Lambda_{\rm s}}(a_{\rm ta}) < 0$', fontsize=20, color='white')
-plt.text(1.850, 0.975, r'$\rho_{\Lambda_{\rm s}}(a_{\rm ta}) > 0$', fontsize=20, color='white')
+plt.text(1.850, 1.018, r'$\rho_{\Lambda_{\rm s}}(a_{\rm ta}) < 0$', fontsize=36, color='white')
+plt.text(1.850, 0.967, r'$\rho_{\Lambda_{\rm s}}(a_{\rm ta}) > 0$', fontsize=36, color='white')
 
 # Other settings
 ax0.legend()

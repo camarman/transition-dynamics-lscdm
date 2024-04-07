@@ -5,6 +5,7 @@ from scipy.integrate import quad
 # ==================== PARAMETERS ====================
 # Parameters are taken from https://arxiv.org/pdf/1807.06209.pdf
 # Table I. Upper Panel Plik Best Fit Values
+
 c = 299792.458   # speed of light [km/s]
 N_eff = 3.046    # effective neutrino number
 
@@ -17,27 +18,25 @@ Orh2 = Oph2 + Onh2                                  # physical radiation density
 
 theta_true = 0.01041085                             # acoustic scale
 hubble_error = 1e-8                                 # the accepted error while calculating the hubble constant
-h0_prior = [0.4, 1]                                 # h_0 prior range
+h0_prior = [0.4, 1]                                 # h0 prior range
 
 
 # ==================== CALCULATING REDSHIFT TO LSS ====================
 # See https://arxiv.org/pdf/astro-ph/9510117.pdf for further information
 def z_lss_finder(Obh2, Omh2):
     """Calculating the redshift to the Last Scattering Surface (LSS)"""
-
     g1 = 0.0783*Obh2**(-0.238)*(1+39.5*Obh2**(0.763))**(-1)
     g2 = 0.56*(1+21.1*Obh2**(1.81))**(-1)
     z_lss = 1048*(1+0.00124*Obh2**(-0.738))*(1+g1*Omh2**g2)
     return z_lss
 
-# Redshift parameters for a given Obh2 and Omh2
+# Redshift to LSS, for a given Obh2 and Omh2
 z_lss = z_lss_finder(Obh2, Omh2)
 
 
 # ==================== CALCULATING THE COMOVING SOUND HORIZON AT THE LSS ====================
-def r_s_finder_lscdm(h0, z_dag):
+def r_s_finder_LsCDM(h0, z_dag):
     """Calculating the comoving sound horizon at the LSS (r_s)"""
-
     def integrand(z):
         f_lscdm = np.sign(z_dag - z)
         R = (3*Obh2) / (4*Oph2*(1+z))
@@ -49,9 +48,8 @@ def r_s_finder_lscdm(h0, z_dag):
 
 
 # ==================== CALCULATING COMOVING ANGULAR DIAMETER DISTANCE AT THE LSS ====================
-def d_A_finder_lscdm(h0, z_dag):
+def d_A_finder_LsCDM(h0, z_dag):
     """Calculating the comoving angular diameter distance to the LSS (d_A(z_*))"""
-
     def integrand(z):
         f_lscdm = np.sign(z_dag - z)
         return c / (100 * np.sqrt(Omh2*(1+z)**3 + Orh2*(1+z)**4 + (h0**2-Omh2-Orh2)*f_lscdm))
@@ -60,14 +58,13 @@ def d_A_finder_lscdm(h0, z_dag):
 
 
 # ==================== FINDING HUBBLE CONSTANT & MATTER DENSITY PARAMETER ====================
-def hubble_finder_lscdm(z_dag):
+def h0_finder_LsCDM(z_dag):
     """Finding the Hubble constant"""
-
     h0_min, h0_max = h0_prior
     for i in range(100):
         h0_test = (h0_min + h0_max) / 2
-        r_s_test = r_s_finder_lscdm(h0_test, z_dag)
-        d_A_test = d_A_finder_lscdm(h0_test, z_dag)
+        r_s_test = r_s_finder_LsCDM(h0_test, z_dag)
+        d_A_test = d_A_finder_LsCDM(h0_test, z_dag)
         theta_test = r_s_test / d_A_test
         if abs(theta_true - theta_test) > hubble_error: # adjusting the error
             if theta_true - theta_test > 0:
@@ -79,8 +76,7 @@ def hubble_finder_lscdm(z_dag):
     return h0_test
 
 
-def Om0_finder_lscdm(z_dag):
+def Om0_finder_LsCDM(z_dag):
     """Finding the matter density parameter"""
-
-    h0 = hubble_finder_lscdm(z_dag)
+    h0 = h0_finder_LsCDM(z_dag)
     return Omh2/h0**2

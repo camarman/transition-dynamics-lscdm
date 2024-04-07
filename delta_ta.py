@@ -10,7 +10,7 @@ from src.lcdm import *
 
 # ==================== PARAMETERS ====================
 # --------------------- LCDM
-Om0_lcdm = Om0_finder_lcdm()
+Om0_lcdm = Om0_finder_LCDM()
 omega_lcdm = (1 - Om0_lcdm) / Om0_lcdm
 
 # --------------------- Range of the Turnaround
@@ -19,16 +19,16 @@ a_ta_range = 1 / (1 + z_ta_range)
 
 
 # ==================== NUMERICAL ANALYSIS ====================
-def find_delta_ta_lcdm(a_ta_i, omega_i):
+def find_delta_ta_LCDM(a_ta_i, omega_i):
     delta_ta_lcdm = cal_delta_ta_LCDM(a_ta_i, omega_i)
     return delta_ta_lcdm
 
 
-def find_delta_ta_lscdm(a_ta_i, y_dag):
+def find_delta_ta_LsCDM(a_ta_i, y_dag):
     a_dag_i = a_ta_i * y_dag
     z_dag_i = 1 / a_dag_i - 1
 
-    Om0_lscdm = Om0_finder_lscdm(z_dag_i)
+    Om0_lscdm = Om0_finder_LsCDM(z_dag_i)
     omega_lscdm = (1 - Om0_lscdm) / Om0_lscdm
 
     if 0 < y_dag < 1:
@@ -38,17 +38,17 @@ def find_delta_ta_lscdm(a_ta_i, y_dag):
     return delta_ta_lscdm
 
 # --------------------- LCDM
-delta_ta_lcdm = np.array([1 + find_delta_ta_lcdm(a_ta_i, omega_lcdm) for a_ta_i in a_ta_range])
+delta_ta_lcdm = np.array([1 + find_delta_ta_LCDM(a_ta_i, omega_lcdm) for a_ta_i in a_ta_range])
 
 # --------------------- LsCDM (Pre-Turnaround)
-delta_ta_lscdm_1 = np.array([1 + find_delta_ta_lscdm(a_ta_i, y_dag=0.60) for a_ta_i in a_ta_range])
-delta_ta_lscdm_2 = np.array([1 + find_delta_ta_lscdm(a_ta_i, y_dag=0.70) for a_ta_i in a_ta_range])
-delta_ta_lscdm_3 = np.array([1 + find_delta_ta_lscdm(a_ta_i, y_dag=0.80) for a_ta_i in a_ta_range])
+delta_ta_lscdm_1 = np.array([1 + find_delta_ta_LsCDM(a_ta_i, y_dag=0.60) for a_ta_i in a_ta_range])
+delta_ta_lscdm_2 = np.array([1 + find_delta_ta_LsCDM(a_ta_i, y_dag=0.70) for a_ta_i in a_ta_range])
+delta_ta_lscdm_3 = np.array([1 + find_delta_ta_LsCDM(a_ta_i, y_dag=0.80) for a_ta_i in a_ta_range])
 
 # --------------------- LsCDM (Post-Turnaround)
-delta_ta_lscdm_4 = np.array([1 + find_delta_ta_lscdm(a_ta_i, y_dag=1.01) for a_ta_i in a_ta_range])
-delta_ta_lscdm_5 = np.array([1 + find_delta_ta_lscdm(a_ta_i, y_dag=1.05) for a_ta_i in a_ta_range])
-delta_ta_lscdm_6 = np.array([1 + find_delta_ta_lscdm(a_ta_i, y_dag=1.08) for a_ta_i in a_ta_range])
+delta_ta_lscdm_4 = np.array([1 + find_delta_ta_LsCDM(a_ta_i, y_dag=1.01) for a_ta_i in a_ta_range])
+delta_ta_lscdm_5 = np.array([1 + find_delta_ta_LsCDM(a_ta_i, y_dag=1.05) for a_ta_i in a_ta_range])
+delta_ta_lscdm_6 = np.array([1 + find_delta_ta_LsCDM(a_ta_i, y_dag=1.08) for a_ta_i in a_ta_range])
 
 
 # ==================== PLOT ====================
@@ -57,33 +57,30 @@ plt.rc('text', usetex=True)
 plt.rc('font', family='serif')
 
 # Adjusting the size of the figure
-params = {
-            'legend.fontsize': '22.5',
-            'axes.labelsize': '30',
-            'figure.figsize': (15, 10),
-            'xtick.labelsize': '25',
-            'ytick.labelsize': '25'
-        }
-
+params = {'legend.fontsize': '27',
+        'axes.labelsize': '44',
+        'figure.figsize': (15, 10),
+        'xtick.labelsize': '44',
+        'ytick.labelsize': '44'}
 pylab.rcParams.update(params)
 
 fig, ax0 = plt.subplots()
 
 ax0.plot(z_ta_range, delta_ta_lcdm, color='#000000', ls=(0, (5, 1)),
-        lw=3.0, label=r'$\Lambda$CDM ($\Omega_{\rm m}=0.3101$)')
+        lw=3.5, label=r'$\Lambda$CDM ($\Omega_{\rm m}=0.3101$)')
 
-ax0.plot(z_ta_range, delta_ta_lscdm_1, color='#FFA500', ls='-', lw=3.0,
+ax0.plot(z_ta_range, delta_ta_lscdm_1, color='#FFA500', ls='-', lw=3.5,
         label=r'$y_{\dagger}=0.60~(\rho_{\Lambda_{\rm s}}(a_{\rm ta}) > 0)$')
-ax0.plot(z_ta_range, delta_ta_lscdm_2, color='#FF0000', ls='-', lw=3.0,
+ax0.plot(z_ta_range, delta_ta_lscdm_2, color='#FF0000', ls='-', lw=3.5,
         label=r'$y_{\dagger}=0.70~(\rho_{\Lambda_{\rm s}}(a_{\rm ta}) > 0)$')
-ax0.plot(z_ta_range, delta_ta_lscdm_3, color='#800000', ls='-', lw=3.0,
+ax0.plot(z_ta_range, delta_ta_lscdm_3, color='#800000', ls='-', lw=3.5,
         label=r'$y_{\dagger}=0.80~(\rho_{\Lambda_{\rm s}}(a_{\rm ta}) > 0)$')
 
-ax0.plot(z_ta_range, delta_ta_lscdm_4, color='#000080', ls='-', lw=3.0,
+ax0.plot(z_ta_range, delta_ta_lscdm_4, color='#000080', ls='-', lw=3.5,
         label=r'$y_{\dagger}=1.01~(\rho_{\Lambda_{\rm s}}(a_{\rm ta}) < 0)$')
-ax0.plot(z_ta_range, delta_ta_lscdm_5, color='#0000ff', ls='-', lw=3.0,
+ax0.plot(z_ta_range, delta_ta_lscdm_5, color='#0000ff', ls='-', lw=3.5,
         label=r'$y_{\dagger}=1.05~(\rho_{\Lambda_{\rm s}}(a_{\rm ta}) < 0)$')
-ax0.plot(z_ta_range, delta_ta_lscdm_6, color='#00ffff', ls='-', lw=3.0,
+ax0.plot(z_ta_range, delta_ta_lscdm_6, color='#00ffff', ls='-', lw=3.5,
         label=r'$y_{\dagger}=1.08~(\rho_{\Lambda_{\rm s}}(a_{\rm ta}) < 0)$')
 
 # Setting labels

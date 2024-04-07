@@ -10,7 +10,7 @@ from src.lcdm import *
 
 # ==================== PARAMETERS ====================
 # --------------------- LCDM
-Om0_lcdm = Om0_finder_lcdm()
+Om0_lcdm = Om0_finder_LCDM()
 omega_lcdm = (1 - Om0_lcdm) / Om0_lcdm
 
 # --------------------- Range of Turnaround
@@ -23,20 +23,20 @@ def rho_vir(a_ta_i, y_dag):
 	# LCDM
     delta_ta_lcdm = cal_delta_ta_LCDM(a_ta_i, omega_lcdm)
     epsilon_lcdm = (omega_lcdm * a_ta_i**3) / (1 + delta_ta_lcdm)
-    eta_lcdm = solve_eta_lcdm(epsilon_lcdm)
+    eta_lcdm = solve_eta_LCDM(epsilon_lcdm)
 
     # LsCDM
     a_dag_i = a_ta_i * y_dag
     z_dag_i = 1 / a_dag_i - 1
 
-    H0_lscdm = 100 * hubble_finder_lscdm(z_dag_i)
-    Om0_lscdm = Om0_finder_lscdm(z_dag_i)
+    H0_lscdm = 100 * h0_finder_LsCDM(z_dag_i)
+    Om0_lscdm = Om0_finder_LsCDM(z_dag_i)
     omega_lscdm = (1 - Om0_lscdm) / Om0_lscdm
 
     if 0 < y_dag < 1:
         delta_ta_lscdm = cal_pre_delta_ta_LsCDM(a_ta_i, omega_lscdm, y_dag)
         epsilon_lscdm = (omega_lscdm * a_ta_i**3) / (1 + delta_ta_lscdm)
-        eta_lscdm = solve_eta_pre_turn_lscdm(epsilon_lscdm)
+        eta_lscdm = solve_eta_pre_turn_LsCDM(epsilon_lscdm)
 
     else:
         delta_ta_lscdm = cal_post_delta_ta_LsCDM(a_ta_i, omega_lscdm)
@@ -57,7 +57,7 @@ def rho_vir(a_ta_i, y_dag):
         delta = 1 - ((H_pos / H_neg) * beta)
         delta0 = delta * (2 + delta)
 
-        eta_lscdm = solve_eta_post_turn_lscdm(epsilon_lscdm, u_dag, delta0)
+        eta_lscdm = solve_eta_post_turn_LsCDM(epsilon_lscdm, u_dag, delta0)
 
     num = (1 + delta_ta_lscdm) * eta_lscdm**(-3)
     den = (1 + delta_ta_lcdm) * eta_lcdm**(-3)
@@ -79,34 +79,31 @@ rho_vir_ratio_6 = np.array([rho_vir(a_ta_i, y_dag=1.08) for a_ta_i in a_ta_range
 plt.rc('text', usetex=True)
 plt.rc('font', family='serif')
 
-# Adjusting size of the figure
-params = {
-            'legend.fontsize': '22.5',
-            'axes.labelsize': '30',
-            'figure.figsize': (15, 10),
-            'xtick.labelsize': '25',
-            'ytick.labelsize': '25'
-        }
-
+# Adjusting the size of the figure
+params = {'legend.fontsize': '27',
+        'axes.labelsize': '44',
+        'figure.figsize': (15, 10),
+        'xtick.labelsize': '44',
+        'ytick.labelsize': '44'}
 pylab.rcParams.update(params)
 
 fig, ax0 = plt.subplots()
 
-ax0.axhline(y=1, color='#000000', ls=(0, (5, 1)), lw=3.0,
+ax0.axhline(y=1, color='#000000', ls=(0, (5, 1)), lw=3.5,
             label=r'$\Lambda$CDM ($\Omega_{\rm m}=0.3101$)')
 
-ax0.plot(z_ta_range, rho_vir_ratio_1, color='#FFA500', ls='-', lw=3.0,
+ax0.plot(z_ta_range, rho_vir_ratio_1, color='#FFA500', ls='-', lw=3.5,
         label=r'$y_{\dagger}=0.60~(\rho_{\Lambda_{\rm s}}(a_{\rm ta}) > 0)$')
-ax0.plot(z_ta_range, rho_vir_ratio_2, color='#FF0000', ls='-', lw=3.0,
+ax0.plot(z_ta_range, rho_vir_ratio_2, color='#FF0000', ls='-', lw=3.5,
         label=r'$y_{\dagger}=0.70~(\rho_{\Lambda_{\rm s}}(a_{\rm ta}) > 0)$')
-ax0.plot(z_ta_range, rho_vir_ratio_3, color='#800000', ls='-', lw=3.0,
+ax0.plot(z_ta_range, rho_vir_ratio_3, color='#800000', ls='-', lw=3.5,
         label=r'$y_{\dagger}=0.80~(\rho_{\Lambda_{\rm s}}(a_{\rm ta}) > 0)$')
 
-ax0.plot(z_ta_range, rho_vir_ratio_4, color='#000080', ls='-', lw=3.0,
+ax0.plot(z_ta_range, rho_vir_ratio_4, color='#000080', ls='-', lw=3.5,
         label=r'$y_{\dagger}=1.01~(\rho_{\Lambda_{\rm s}}(a_{\rm ta}) < 0)$')
-ax0.plot(z_ta_range, rho_vir_ratio_5, color='#0000ff', ls='-', lw=3.0,
+ax0.plot(z_ta_range, rho_vir_ratio_5, color='#0000ff', ls='-', lw=3.5,
         label=r'$y_{\dagger}=1.05~(\rho_{\Lambda_{\rm s}}(a_{\rm ta}) < 0)$')
-ax0.plot(z_ta_range, rho_vir_ratio_6, color='#00ffff', ls='-', lw=3.0,
+ax0.plot(z_ta_range, rho_vir_ratio_6, color='#00ffff', ls='-', lw=3.5,
         label=r'$y_{\dagger}=1.08~(\rho_{\Lambda_{\rm s}}(a_{\rm ta}) < 0)$')
 
 # Setting labels
