@@ -49,5 +49,3 @@ BibTeX Format:
 ## Contributors
 
 Arman Çam & Evangelos A. Paraskevas (February 2024)
-
-[def]: https://arxiv.org/abs/2402.05908
