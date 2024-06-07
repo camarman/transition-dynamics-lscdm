@@ -1,0 +1,45 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: transition-dynamics-lscdm
+message: Please cite the following article in the use the code
+type: software
+authors:
+  - {}
+  - given-names: Evangelos
+    family-names: Paraskevas
+    email: e.paraskevas@uoi.gr
+    affiliation: 'Department of Physics, University of Ioannina'
+    orcid: 'https://orcid.org/0009-0000-2112-1619'
+  - given-names: Arman
+    family-names: Çam
+    email: cam21@itu.edu.tr
+    affiliation: 'Department of Physics, Istanbul Technical University'
+    orcid: 'https://orcid.org/0009-0000-6193-6150'
+  - given-names: Leandros
+    family-names: Perivolaropoulos
+    email: leandros@uoi.gr
+    affiliation: 'Department of Physics, University of Ioannina'
+    orcid: 'https://orcid.org/0000-0001-9330-2371'
+  - given-names: Özgür
+    family-names: Akarsu
+    email: akarsuo@itu.edu.tr
+    affiliation: 'Department of Physics, Istanbul Technical University'
+    orcid: 'https://orcid.org/0000-0001-6917-6176'
+identifiers:
+  - type: doi
+    value: 10.1103/PhysRevD.109.103522
+repository-code: 'https://github.com/camarman/transition-dynamics-lscdm'
+url: >-
+  https://journals.aps.org/prd/abstract/10.1103/PhysRevD.109.103522
+abstract: >-
+  About
+
+  Transition dynamics in the ΛₛCDM model: Implications for
+  bound cosmic structures
+keywords:
+  - physics
+  - cosmology
+  - general relativity
+license: MIT

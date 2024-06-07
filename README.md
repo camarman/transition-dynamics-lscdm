@@ -15,25 +15,15 @@ with either increased or reduced matter overdensity compared to the Planck- $\La
 Additionally, our results demonstrate that the sudden singularity does not result in the dissociation of bound systems. Despite its profound
 nature, the singularity exerts only relatively weak effects on such systems, thereby reinforcing the model's viability in this context.
 
-## Requirements for Python
+## Requirements
 
 In Windows OS you can install the requirements via
 
     py -m pip install matplotlib numpy scipy
 
-meanwhile, in Linux
+meanwhile, in GNU/Linux
 
     python3 -m pip install matplotlib numpy scipy
-
-## Attribution
-
-If you find this code useful in your research, please cite
-
->Transition dynamics in the $\Lambda_{\rm s}$ CDM model: Implications for bound cosmic structures
->
->Evangelos A. Paraskevas, Arman Cam, Leandros Perivolaropoulos, Ozgur Akarsu
->
->e-Print: [2402.05908 [astro-ph.CO]][def]
 
 ## Contributors
 
