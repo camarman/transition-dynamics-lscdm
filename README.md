@@ -27,7 +27,7 @@ meanwhile, in GNU/Linux
 
 ## Attribution
 
-If you find this code useful in your research, please cite our [research](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.109.103522)
+If you find this code useful, please cite our [research](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.109.103522)
 
 BibTeX Format:
 
