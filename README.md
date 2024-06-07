@@ -27,7 +27,7 @@ meanwhile, in GNU/Linux
 
 ## Citation
 
-If you find this code useful in your research, please cite
+If you find this code useful in your research, please [cite](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.109.103522)
 
 BibTeX Format:
 
@@ -48,4 +48,4 @@ BibTeX Format:
 
 ## Contributors
 
-Arman Çam & Evangelos A. Paraskevas (February 2024)
+Arman Çam & Evangelos A. Paraskevas
