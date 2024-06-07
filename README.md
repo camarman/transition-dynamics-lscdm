@@ -46,7 +46,6 @@ BibTeX Format:
     url = {https://link.aps.org/doi/10.1103/PhysRevD.109.103522}
     }
 
-
 ## Contributors
 
 Arman Çam & Evangelos A. Paraskevas (February 2024)
