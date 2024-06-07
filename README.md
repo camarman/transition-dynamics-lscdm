@@ -25,8 +25,30 @@ meanwhile, in GNU/Linux
 
     python3 -m pip install matplotlib numpy scipy
 
+## Citation
+
+If you find this code useful in your research, please cite
+
+BibTeX Format:
+
+    @article{PhysRevD.109.103522,
+    title = {Transition dynamics in the ${\mathrm{\ensuremath{\Lambda}}}_{\mathrm{s}}\mathrm{CDM}$ model: Implications for bound cosmic structures},
+    author = {Paraskevas, Evangelos A. and \ifmmode \mbox{\c{C}}\else \c{C}\fi{}am, Arman and Perivolaropoulos, Leandros and Akarsu, \"Ozg\"ur},
+    journal = {Phys. Rev. D},
+    volume = {109},
+    issue = {10},
+    pages = {103522},
+    numpages = {23},
+    year = {2024},
+    month = {May},
+    publisher = {American Physical Society},
+    doi = {10.1103/PhysRevD.109.103522},
+    url = {https://link.aps.org/doi/10.1103/PhysRevD.109.103522}
+    }
+
+
 ## Contributors
 
-Arman Çam & Evangelos A. Paraskevas
+Arman Çam & Evangelos A. Paraskevas (February 2024)
 
 [def]: https://arxiv.org/abs/2402.05908
